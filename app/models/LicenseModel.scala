@@ -32,7 +32,7 @@ object LicenseModel {
     }
   }
 
-  def searchLicenses(db: Database, page: Int, search: String): Seq[LicenseModel] = {
+  def searchLicenses(db: Database, page: Int, search: String): List[LicenseModel] = {
     var result: List[LicenseModel] = List()
     db.withConnection { conn =>
       val query = conn.createStatement().executeQuery(s"SELECT * FROM License WHERE UPPER(license_name) LIKE UPPER('%$search%') LIMIT 6 OFFSET ${(page - 1) * 6}")
