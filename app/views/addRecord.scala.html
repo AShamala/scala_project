@@ -1,0 +1,77 @@
+@(message: String, users: List[UserModel], equip: EquipModel)(implicit userInfo: UserModel)
+
+@main2("Добавить запись", 0, userInfo) {
+<div class="profile-content">
+    <h1>Добавить запись</h1>
+    <p class="message">@message</p>
+    <form class="add-element-form" action="/addRecord" method="post">
+        <input type="hidden" name="owner" value="@equip.owner.id">
+        <input type="hidden" name="equipId" value="@equip.id">
+        <label>Выберете тип записи<br><select class="add-element-list-input" name="type" id="type" 
+            onchange="recordType()">
+            <option value=""></option>
+            <option value="Хранение">Хранение</option>
+            <option value="Ремонт">Ремонт</option>
+            <option value="Передача">Передача</option>
+            <option value="Списание">Списание</option>
+        </select></label><br><br>
+        <div id="storage" style="display: none;">
+            <label>Место хранения<br><input class="add-element-input" type="text" name="storagePlace"></label><br><br>
+            <label>Период</label><br>
+            С <input class="add-element-date" type="date" name="storageDateBegin"> по <input class="add-element-date" type="date" name="storageDateEnd">
+        </div>
+        <div id="repairs" style="display: none;">
+            <label>Место ремонта<br><input class="add-element-input" type="text" name="repPlace"><br></label><br>
+            <label>Причина ремонта<br><input class="add-element-input" type="text" name="repReason"><br></label><br>
+            <label>Период</label><br>
+            С <input class="add-element-date" type="date" name="repDateBegin"> по <input class="add-element-date" type="date" name="repDateEnd">
+        </div>
+        <div id="transfer" style="display: none;">
+            <label>Новый владелец<br><input class="add-element-input" type="text" list="users" name="newOwner"></label><br>
+            <datalist id="users">
+                @for(user <- users) {
+                    <option value="@user.id. @user.name @user.surname (@user.email)"></option>
+                }
+            </datalist><br>
+            <label>Дата передачи<br><input class="add-element-input" type="date" name="transferDate"></label>
+        </div>
+        <div id="write-off" style="display: none;">
+            <label>Причина списания<br><input class="add-element-input" type="text" name="writeOffReason"><br></label><br>
+            <label>Дата списания<br><input class="add-element-input" type="date" name="writeOffDate"><br></label>
+        </div>
+        <input type="submit" value="Добавить">
+    </form>
+    <a href="@routes.HomeController.history(equip.id, 1, "")">Назад</a>
+    <script>
+        function recordType() { 
+            var recordType = document.getElementById('type').value;
+            if (recordType == 'Хранение') {
+                document.getElementById('storage').style.display = 'block';
+                document.getElementById('transfer').style.display = 'none';
+                document.getElementById('repairs').style.display = 'none';
+                document.getElementById('write-off').style.display = 'none';
+            } else if (recordType == 'Ремонт') {
+                document.getElementById('transfer').style.display = 'none';
+                document.getElementById('storage').style.display = 'none';
+                document.getElementById('repairs').style.display = 'block';
+                document.getElementById('write-off').style.display = 'none';
+            } else if (recordType == 'Передача') {
+                document.getElementById('repairs').style.display = 'none';
+                document.getElementById('storage').style.display = 'none';
+                document.getElementById('transfer').style.display = 'block';
+                document.getElementById('write-off').style.display = 'none';
+            } else if (recordType == 'Списание') {
+                document.getElementById('write-off').style.display = 'block';
+                document.getElementById('storage').style.display = 'none';
+                document.getElementById('transfer').style.display = 'none';
+                document.getElementById('repairs').style.display = 'none';
+            } else {
+                document.getElementById('write-off').style.display = 'none';
+                document.getElementById('storage').style.display = 'none';
+                document.getElementById('transfer').style.display = 'none';
+                document.getElementById('repairs').style.display = 'none';
+            }
+        }
+    </script>
+</div>
+}

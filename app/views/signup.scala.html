@@ -1,0 +1,17 @@
+@(message: String)(implicit userInfo: UserModel)
+@import views.html.helper._
+
+@main2("Оборудование", 0, userInfo) {
+<div class="auth">
+    <h2>Регистрация</h2>
+    <p class="message">@message</p>
+    <form method="post" action="sign">
+        <input type="text" name="email" placeholder="Логин"><br>
+        <input type="password" name="password" placeholder="Пароль"><br>
+        <input type="password" name="repeatedPassword" placeholder="Повторите пароль"><br><br>
+        <input type="text" name="name" placeholder="Имя"><br>
+        <input type="text" name="surname" placeholder="Фамилия"><br>
+        <input type="submit" value="регистрация">
+    </form>
+</div>
+}

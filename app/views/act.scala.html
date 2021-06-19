@@ -1,0 +1,35 @@
+@()(implicit userInfo: UserModel)
+
+@main2("Акт приема-передачи оборудования", 4, userInfo) {
+<h1>Акт приема-передачи оборудования</h1>
+<div class="search" style="padding-bottom: 55px;">
+    <a class="add-element-button" style="margin-top: 0;" href="/assets/documents/act.pdf" target="_blank">Открыть</a>
+    <a class="add-element-button download" style="margin-top: 0;" download href="/assets/documents/act.pdf">Скачать</a>
+</div>
+<div class="act-body">
+    <div class="act-background">
+        <canvas id="act"></canvas>
+    </div>
+</div>
+<script src="assets/plugins/PDFjs/build/pdf.js"></script>
+<script>
+    var loadingTask = pdfjsLib.getDocument('assets/documents/act.pdf');
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(1).then(function(page) {
+            var scale = 1;
+            var viewport = page.getViewport({ scale: scale, });
+
+            var canvas = document.getElementById('act');
+            var context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+            };
+            page.render(renderContext);
+        });
+    });
+</script>
+}

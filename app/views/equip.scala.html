@@ -1,0 +1,55 @@
+@(page: Int, pageCount: Int, equipCount: Int, search: String, equipment: List[EquipModel])(implicit userInfo: UserModel)
+
+@main2("Оборудование", 2, userInfo) {
+<h1>Просмотр оборудования</h1>
+@if(userInfo.isAdmin) {
+<a class="add-element-button" href="@routes.HomeController.addEquipment()">Добавить оборудование</a>
+}
+<div class="search">
+    <form method="post" action="searchEquipment">
+        <input class="search-field" type="text" name="pattern" value="@search" placeholder="Поиск" maxlength="255">
+        <input class="search-button" type="submit" value="Найти">
+    </form>
+    @if(search != "") {
+    <span class="result"><strong>Результат поиска:</strong> "@search" (@equipCount) </span>
+    <a class="undo" href="@routes.HomeController.equip(1, "")">Отмена</a>
+    }
+</div>
+@if(equipment.length != 0) {
+<table class="equipment">
+    <thead>
+        <th width="200">Название</th>
+        <th>Статус</th>
+        <th>Ответственное лицо</th>
+        <th>Гарантийный срок</th>
+        <th>История</th>
+        @if(userInfo.isAdmin) {
+        <th>Редактировать</th>
+        }
+    </thead>
+    <tbody>
+    @for(e <- equipment) {
+    <tr>
+        <td>@e.name</td>
+        <td class="@if(e.status == "Работает") {work} else if(e.status == "Не работает") {not-work} else {work-out}">@e.status</td>
+        <td>@if(e.owner.name == "" && e.owner.surname == ""){Нет}else{@e.owner.name @e.owner.surname}</td>
+        <td @if(e.isExpired){class="expired-warranty"}>@if(e.warranty != null){@e.warranty}else{Нет}</td>
+        <td class="history-ref"><a href="@routes.HomeController.history(e.id, 1, "")"><span class="dot"></span><span class="dot"></span><span class="dot"></span></a></td>
+        @if(userInfo.isAdmin) {
+        <td class="edit-cell"><a class="edit-ref" href="@routes.HomeController.editEquipment(e.id)"><img width="25" src="@routes.Assets.versioned("images/edit.png")"></a></td>
+        }
+    </tr>
+    }
+    </tbody>
+</table>
+} else {
+    <div class="empty">Нет записей</div>
+}
+<div class="page-nav">
+    <a @if(page > 1) {href="@routes.HomeController.equip(page - 1, search)" class="unlocked"} else { class="locked" }><div class="arrow-left"></div>     
+    </a>@if(page > 1){<a class="not-current" href="@routes.HomeController.equip(1, search)">1</a><span class="dots">..
+    </span>}<a class="current" href="@routes.HomeController.equip(page, search)">@page
+    </a>@if(page < pageCount){<span class="dots">..</span><a class="not-current" href="@routes.HomeController.equip(pageCount, search)">@pageCount
+    </a>}<a @if(page < pageCount) {href="@routes.HomeController.equip(page + 1, search)" class="unlocked"} else { class="locked"}><div class="arrow-right"></div></a>
+</div>
+}

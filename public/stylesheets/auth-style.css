@@ -1,0 +1,49 @@
+.auth {
+    margin-top: 6%;
+    margin-left: 50%;
+    transform: translate(-250px, 0);
+    width: 300px;
+    background: white;
+    padding:30px;
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.auth input {
+    margin-bottom: 15px;
+}
+
+.auth input[type="password"],
+.auth input[type="text"] {
+    border: 1px solid black;
+    width: 270px;
+    height: 18px;
+    padding: 5px;
+}
+
+.auth input[type="submit"] {
+    border: none;
+    width: 282px;
+    height: 35px;
+    background:rgb(0, 48, 10);
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.auth input[type="submit"]:hover {
+    background:rgb(0, 32, 8);
+}
+
+.auth input[type="submit"]:active {
+    background:rgb(0, 32, 8);
+    color: rgb(168, 168, 168);
+}
+
+.auth label {
+    float: right;
+    margin-right: 15px;
+}
+
+.auth a {
+    color: rgb(0, 140, 221);
+}

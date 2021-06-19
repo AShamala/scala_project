@@ -1,0 +1,91 @@
+@(id: Int, page: Int, pageCount: Int, filter: String, history: List[RecordModel], equip: EquipModel, back: String)(implicit userInfo: UserModel)
+
+@main2("История жизненного цикла", 0, userInfo) {
+<h1>История жизненного цикла оборудования</h1>
+@if(userInfo.isAdmin || userInfo.email == equip.owner.email) {
+    <a class="add-element-button" href="@routes.HomeController.addRecord(equip.id)">Добавить запись</a>
+}
+<div class="equip-info">
+    <strong>Название: </strong>@equip.name<br>
+    <strong>Состояние: </strong>@equip.status<br>
+    <strong>Ответственное лицо: </strong>@equip.owner.name @equip.owner.surname (@equip.owner.email)
+</div>
+<div class="search filter">
+<form method="post" action="historyFilter">
+    <input type="hidden" name="id" value="@id">
+    <select class="search-field" name="filter">
+        <option @if(filter=="") {selected} value="">Нет</option>
+        <option @if(filter=="Хранение") {selected} value="Хранение">Хранение</option>
+        <option @if(filter=="Передача") {selected} value="Передача">Передача</option>
+        <option @if(filter=="Ремонт") {selected} value="Ремонт">Ремонт</option>
+        <option @if(filter=="Списание") {selected} value="Списание">Списание</option>
+    </select>
+    <input class="search-button" type="submit" value="Подтвердить">
+</form>
+</div>
+@if(history.length != 0) {
+<table class="history">
+    <thead>
+        <th>Тип записи</th>
+        <th colspan="2">Информация</th>
+        <th>Дата</th>
+    </thead>
+    <tbody>
+    @for(record <- history) {
+    <tr class="@if(record.recordType=="Передача"){transfer}else if(record.recordType=="Хранение"){storage}else if(record.recordType=="Ремонт"){repairs}else{write-off}">
+        <td rowspan="2">@record.recordType</td>
+        @if(record.recordType=="Хранение") {
+        <td colspan="2">Место</td>
+        }
+        @if(record.recordType=="Передача") {
+        <td>Старый владелец</td>
+        <td>Новый владелец</td>
+        }
+        @if(record.recordType=="Ремонт") {
+        <td>Место</td>
+        <td>Причина поломки</td>
+        }
+        @if(record.recordType=="Списание") {
+        <td>Причина списания</td>
+        <td>Ответственное лицо</td>
+        }
+        <td rowspan="2">
+            @record.dateBegin@if(record.dateEnd != ""){ @record.dateEnd}
+        </td>
+        <td class="del-record" rowspan="2">
+            @if(record.owner.email == userInfo.email && record.isDeletable || userInfo.isAdmin) {
+            <a href="@routes.HomeController.deleteRecord(equip.id, record.id)"><img width="30" src="@routes.Assets.versioned("images/delete.png")" alt="удалить"></a>
+            }
+        </td>
+    </tr>
+    <tr class="@if(record.recordType=="Передача"){transfer}else if(record.recordType=="Хранение"){storage}else if(record.recordType=="Ремонт"){repairs}else{write-off}">
+        @if(record.recordType=="Хранение") {
+        <td colspan="2">@record.place</td>
+        }
+        @if(record.recordType=="Передача") {
+        <td>@record.owner.name @record.owner.surname</td>
+        <td>@record.newOwner.name @record.newOwner.surname</td>
+        }
+        @if(record.recordType=="Ремонт") {
+        <td>@record.place</td>
+        <td>@record.reason</td>
+        }
+        @if(record.recordType=="Списание") {
+        <td>@record.reason</td>
+        <td>@record.owner.name @record.owner.surname</td>
+        }
+    </tr>
+    }
+    </tbody>
+</table>
+} else {
+    <div class="empty">Нет записей</div>
+}
+<div class="page-nav">
+    <a @if(page > 1) {href="@routes.HomeController.history(id, page - 1, filter)" class="unlocked"} else { class="locked" }><div class="arrow-left"></div>     
+    </a>@if(page > 1){<a class="not-current" href="@routes.HomeController.history(id, 1, filter)">1</a><span class="dots">..
+    </span>}<a class="current" href="@routes.HomeController.history(id, page, filter)">@page
+    </a>@if(page < pageCount){<span class="dots">..</span><a class="not-current" href="@routes.HomeController.history(id, pageCount, filter)">@(pageCount)
+    </a>}<a @if(page < pageCount) {href="@routes.HomeController.history(id, page + 1, filter)" class="unlocked"} else { class="locked"}><div class="arrow-right"></div></a>
+</div>
+}

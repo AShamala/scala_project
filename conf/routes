@@ -1,0 +1,67 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET     /login                      controllers.UserController.login()
+
+GET     /signup                     controllers.UserController.signUp()
++ nocsrf
+POST    /login                      controllers.UserController.validUser()
++ nocsrf
+POST    /sign                       controllers.UserController.createUser()
+
+GET     /profile                    controllers.UserController.profile()
+
+GET     /change-password            controllers.UserController.changePass()
++ nocsrf
+POST    /editProfile                controllers.UserController.editProfilePost()
++ nocsrf
+POST    /changePass                 controllers.UserController.changePassPost()
+
+GET     /logout                     controllers.UserController.logout()
+
+GET     /equipment                  controllers.HomeController.equip(page: Int, search: String)
++ nocsrf
+POST    /searchEquipment            controllers.HomeController.searchEquipment()
+
+GET     /add-equipment              controllers.HomeController.addEquipment()
+
++ nocsrf
+POST    /addEquipment               controllers.HomeController.addEquipmentPost()
+
+GET     /edit-equipment/:id         controllers.HomeController.editEquipment(id: Int)
++ nocsrf
+POST    /editEquipment              controllers.HomeController.editEquipmentPost()
+
+GET     /deleteEquipment            controllers.HomeController.deleteEquipment(id: Int)
++ nocsrf
+POST    /equip/history/historyFilter controllers.HomeController.historyFilter()
+
+GET     /equip/history/:id          controllers.HomeController.history(id: Int, page: Int, filter: String)
+
+GET     /equip/history/:id/add-record controllers.HomeController.addRecord(id: Int)
++ nocsrf
+POST    /addRecord                  controllers.HomeController.addRecordPost()
+
+GET     /deleteRecord               controllers.HomeController.deleteRecord(equipId: Int, recordId: Int)
+
+GET     /my-equipment               controllers.HomeController.myEquip(page: Int, search: String)
+
+GET     /license                    controllers.HomeController.license(page: Int, search: String, delete: Boolean)
+
+GET    /deleteLicense               controllers.HomeController.deleteLicense(id: Int, fileName: String)
++ nocsrf
+POST    /searchLicenses             controllers.HomeController.searchLicenses()
+
+GET     /add-license                controllers.HomeController.addLicense()
++ nocsrf
+POST    /addLicense                 controllers.HomeController.addLicensePost()
+
+GET     /acceptance-certificate     controllers.HomeController.act()

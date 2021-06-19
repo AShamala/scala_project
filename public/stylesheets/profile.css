@@ -1,0 +1,89 @@
+.profile-content {
+    margin-left: 50%;
+    margin-right: 50%;
+    padding-left: 100px;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    background-color: white;
+    width: 400px;
+    transform: translate(-250px, 0);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.email {
+    font-style: italic;
+    font-size: 18px;
+    color: rgb(58, 58, 58);
+    
+}
+
+.email-lable {
+    font-size: 18px;
+}
+
+.field {
+    margin-top: 10px;
+}
+
+.field input {
+    width: 280px;
+    padding: 6px;
+}
+
+.profile-content input[type="submit"]{
+    width: 296px;
+    padding: 12px;
+    margin-top: 30px;
+    background-color: rgb(0, 48, 10);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+}
+
+.profile-content input[type="submit"]:hover {
+    background:rgb(0, 32, 8);
+}
+
+.profile-content input[type="submit"]:active {
+    background:rgb(0, 32, 8);
+    color: rgb(168, 168, 168);
+}
+
+.field label {
+    color: rgb(110, 110, 110);
+}
+
+.message {
+    color: teal;
+    display: block;
+    padding-bottom: 10px;
+    width: 320px;
+}
+
+.logout {
+    margin-left: 126px;
+}
+
+.profile-content a {
+    color: teal;
+    display: inline-block;
+    padding-top: 22px;
+}
+
+.profile-content a:hover {
+    color: rgb(0, 82, 82);
+}
+
+.change-pass-field {
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+.change-pass-field input {
+    width: 280px;
+    padding: 6px;
+}
+
+.profile-content h1 {
+    margin-bottom: 0;
+}

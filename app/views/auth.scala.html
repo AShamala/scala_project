@@ -1,0 +1,13 @@
+@(message: String)(implicit userInfo: UserModel)
+
+@main2("Войти", 0, userInfo) {
+<div class="auth">
+    <h2>Вход в систему</h2>
+    <p class="message">@message</p>
+    <form method="post" action="login">
+        <input type="text" name="email" placeholder="Логин"><br>
+        <input type="password" name="password" placeholder="Пароль"><br>
+        <input type="submit" value="войти">
+    </form>
+</div>
+}

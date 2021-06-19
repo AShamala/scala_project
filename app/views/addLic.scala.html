@@ -1,0 +1,15 @@
+@(message: String)(implicit userInfo: UserModel)
+
+@main2("Добавить лицензию", 3, userInfo) {
+    <div class="profile-content">
+        <h1>Добавить лицензию</h1>
+        <p class="message">@message</p>
+        <form class="add-element-form" action="/addLicense" method="post" enctype="multipart/form-data">
+            <label>Название<br><input class="add-element-input" type="text" name="name" maxlength="254"></label><br><br>
+            <label>Дата истечения<br><input class="add-element-input indent" type="date" name="date"></label><br>
+            <label>Формат: .pdf<br><input type="file" name="licenseFile"><br></label>
+            <input type="submit" value="Добавить">
+        </form>
+        <a href="@routes.HomeController.license(1, "", false)">Назад</a>
+    </div>
+}

@@ -1,0 +1,14 @@
+@(message: String)(implicit userInfo: UserModel)
+@main2("Смена пароля", 0, userInfo) {
+<div class="profile-content">
+    <h1>Смена пароля</h1>
+    <p class="message">@message</p>
+    <form method="post" action="changePass">
+        <div class="change-pass-field"><input type="password" name="password" placeholder="Старый пароль"></div><br>
+        <div class="change-pass-field"><input type="password" name="newPass" placeholder="Новый пароль"></div><br>
+        <div class="change-pass-field"><input type="password" name="newPassAgain" placeholder="Подтвердите пароль"></div><br>
+        <div class="change-pass-field"><input type="submit" value="Изменить пароль"></div>
+    </form>
+    <a href="@routes.UserController.profile">Назад</a>
+</div>
+}

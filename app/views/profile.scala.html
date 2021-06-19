@@ -1,0 +1,22 @@
+@(message: String)(implicit userInfo: UserModel)
+@main2("My profile", 0, userInfo) {
+    <div class="profile-content">
+        <h1>Профиль</h1>
+        <p class="message">@message</p>
+        <form method="post" action="editProfile">
+            <span class="email-lable">Email</span><br>
+            <span class="email">@userInfo.email</span><br>
+            <div class="field">
+                <label>Имя</label><br>
+                <input type="text" name="name" value="@userInfo.name" placeholder="Имя"><br>
+            </div>
+            <div class="field">
+                <label>Фамилия</label><br>
+                <input type="text" name="surname" value="@userInfo.surname" placeholder="Фамилия"><br>
+            </div>
+            <input type="submit" value="Сохранить изменения">
+        </form>
+        <a href="@routes.UserController.changePass">Сменить пароль</a>
+        <a class="logout" href="@routes.UserController.logout">Выйти</a>
+    </div>
+}

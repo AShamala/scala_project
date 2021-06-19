@@ -1,0 +1,48 @@
+@*
+* This template is called from the `index` template. This template
+* handles the rendering of the page header and body tags. It takes
+* two arguments, a `String` for the title of the page and an `Html`
+* object to insert into the body of the page.
+*@
+@(title: String, pageNumber: Int)(content: Html )
+
+@* And here's where we render the `Html` object containing
+* the page content. *@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    @* Here's where we render the page title `String`. *@
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/auth-style.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/equip-style.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/profile.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+</head>
+<body>
+<div class="header">
+    <div class="show-nav-bar">
+        <button>
+            <img src="@routes.Assets.versioned("images/show-menu.png")" width="22"></div>
+    </button>
+    <div class="not-auth">
+        <a href="@routes.UserController.login" class="login-btn" value="1">Войти</a>
+        <a href="@routes.UserController.signUp" class="login-btn" value="1">Регистрация</a>
+    </div>
+    <div class="nav-path"></div>
+</div>
+<div class="nav-bar">
+    <ul>
+        <li @if(pageNumber == 1){ class="current" }><a href="@routes.HomeController.myEquip(1, "")"><img src="@routes.Assets.versioned("images/my-equip.png")"></a></li>
+        <li @if(pageNumber == 2){ class="current" }><a href="@routes.HomeController.equip(1, "")"><img src="@routes.Assets.versioned("images/equip.png")"></a></li>
+        <li @if(pageNumber == 3){ class="current" }><a href="@routes.HomeController.license(1, "", false)"><img src="@routes.Assets.versioned("images/lic.png")"></a></li>
+        <li @if(pageNumber == 4){ class="current" }><a href="@routes.HomeController.act"><img src="@routes.Assets.versioned("images/act.png")"></a></li>
+    </ul>
+</div>
+<div class="content">
+    @content
+</div>
+<script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+</body>
+</html>

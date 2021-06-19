@@ -1,0 +1,55 @@
+@(message: String, equip: EquipModel, users: List[UserModel])(implicit userInfo: UserModel)
+
+@main2("Изменение оборудования", 0, userInfo) {
+<div class="profile-content">
+    <h1 style="margin-left: -30px;">Изменение информации об оборудовании</h1>
+    <p class="message">@message</p>
+    <form class="add-element-form" action="/editEquipment" method="post">
+        <input type="hidden" name="id" value="@equip.id">
+        <label>Название<br><input class="add-element-input" type="text" name="name" value="@equip.name"></label><br><br>
+        <label>Состояние<br><select class="add-element-list-input" name="status">
+            <option @if(equip.status == "Работает"){selected} value="Работает">Работает</option>
+            <option @if(equip.status == "Изношено"){selected} value="Изношено">Изношено</option>
+            <option @if(equip.status == "Не работает"){selected} value="Не работает">Не работает</option>
+        </select></label><br><br>
+        <label>Дата истечения гарантии<br><input class="add-element-input indent" type="date" name="date" value="@equip.warranty"></label><br>
+        <label>Ответственное лицо<input  class="add-element-input" type="text" list="selectNewOwner" name="owner" onfocus="this.value=''" value="@equip.owner.id. @equip.owner.name @equip.owner.surname (@equip.owner.email)"></label><br>
+        <datalist id="selectNewOwner">
+            @for(user <- users) {
+            <option value="@user.id. @user.name @user.surname (@user.email)"></option>
+            }
+        </datalist>
+        <a class="save" href="#"
+           onclick="document.getElementById('update').style.display='block';
+           return false;">сохранить</a>
+
+        <div class="confirm" id="update" style="display:none;">
+            <h2>Подтвердите действие</h2>
+            <p>Измененив ответственное лицо вы потеряете доступ к оборудованию</p>
+            <div>
+                <input class="submit" type="submit" value="Сохранить" onclick="this.parentNode.submit();">
+                <a class="cancel" href="#"
+                   onclick="document.getElementById('update').style.display='none';
+                   return false;">Отмена</a>
+            </div>
+        </div>
+    </form>
+    @if(userInfo.isAdmin) {
+    <a class="del" href="#"
+       onclick="document.getElementById('delete').style.display='block';
+           return false;">Удалить</a>
+
+    <div class="confirm" id="delete" style="display:none;">
+        <h2>Подтвердите действие</h2>
+        <p>Удалить данное оборудование?</p>
+        <div>
+            <a style="float: left; margin-right: 10px;" class="submit" href="@routes.HomeController.deleteEquipment(equip.id)">Удалить</a>
+            <a class="cancel" href="#"
+               onclick="document.getElementById('delete').style.display='none';
+                   return false;">Отмена</a>
+        </div>
+    </div>
+    }
+    <a class="back-to-equip" href="@routes.HomeController.myEquip(1, "")">Назад</a>
+</div>
+}

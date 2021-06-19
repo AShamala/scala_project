@@ -1,0 +1,25 @@
+@(message: String, nameField: String, statusField: String, dateFiled: String, users: List[UserModel])(implicit userInfo: UserModel)
+
+@main2("Добавить оборудование", 0, userInfo) {
+<div class="profile-content">
+    <h1 style="margin-left: -30px;">Добавить оборудование</h1>
+    <p class="message">@message</p>
+    <form class="add-element-form" action="/addEquipment" method="post">
+        <label>Название<br><input class="add-element-input" type="text" name="name" value="@nameField"></label><br><br>
+        <label>Состояние<br><select class="add-element-list-input" name="status">
+            <option @if(statusField == "Работает"){selected} value="Работает">Работает</option>
+            <option @if(statusField == "Изношено"){selected} value="Изношено">Изношено</option>
+            <option @if(statusField == "Не работает"){selected} value="Не работает">Не работает</option>
+        </select></label><br><br>
+        <label>Дата истечения гарантии<br><input class="add-element-input indent" type="date" name="date"></label><br>
+        <label>Ответственное лицо<input  class="add-element-input" type="text" list="selectOwner" name="owner"></label><br>
+        <datalist id="selectOwner">
+        @for(user <- users) {
+            <option value="@user.id. @user.name @user.surname (@user.email)"></option>
+        }
+        </datalist>
+        <input type="submit" value="Добавить">
+    </form>
+    <a href="@routes.HomeController.equip(1, "")">Назад</a>
+</div>
+}

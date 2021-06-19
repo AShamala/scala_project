@@ -1,0 +1,430 @@
+.content .empty {
+    width: 670px;
+    padding: 30px;
+    padding-left: 50px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.content .equip-info {
+    width: 750;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.content .equipment {
+    border-bottom: 3px solid rgb(175, 175, 175);
+    border-spacing: 0;
+    border-radius: 5px;
+    width: 750px;
+}
+
+.content th {
+    padding: 5px 5px 8px 8px;
+    background-color: rgb(87, 87, 87);
+    border:rgb(87, 87, 87) solid 2px;
+    color: white;
+    font-size: 18px;
+}
+
+.content th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.content th:last-child {
+    border-top-right-radius: 4px;
+    padding-left: 0;
+}
+
+.content .equipment td{
+    padding: 15px;
+    text-align: center;
+    border-top: rgb(117, 117, 117) solid 2px;
+    font-size: 18px;
+}
+
+.content .equipment .history-ref {
+    background: rgb(207, 207, 207);
+    padding: 0;
+    width: 50px;
+}
+
+.content .equipment .history-ref:hover {
+    background-color:rgb(139, 139, 139);
+    border-right-color: rgb(129, 129, 129);
+}
+option::-ms-value {
+    display: none;
+}
+
+.content .equipment .edit-ref {
+    display: block;
+    padding: 5px;
+    padding-top: 8px;
+    width: 35px;
+    background-color: rgb(255, 205, 111);
+    border-radius: 6px;
+    margin-left: 28px;
+}
+
+.content .equipment .edit-cell {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.content .equipment td:last-child {
+    border-right: 3px solid rgb(175, 175, 175);
+}
+
+.content .equipment td:first-child {
+    border-left: 3px solid rgb(175, 175, 175);
+}
+
+.content .equipment .work {
+    background: rgb(161, 206, 117);
+    color: rgb(49, 105, 41);
+    border-left: rgb(62, 136, 52) solid 2px;
+    border-right: rgb(62, 136, 52) solid 2px;
+}
+
+.content .equipment .not-work {
+    background: rgb(218, 112, 112);
+    color: rgb(128, 16, 16);
+    border-left: rgb(136, 52, 52) solid 2px;
+    border-right: rgb(136, 52, 52) solid 2px;
+}
+
+.content .equipment .work-out {
+    background: rgb(233, 224, 107);
+    color: rgb(121, 115, 39);
+    border-left: rgb(153, 143, 0) solid 2px;
+    border-right: rgb(153, 143, 0) solid 2px;
+}
+
+.content .history-ref a {
+    display: block;
+    padding: 15px;
+}
+
+.content .dot {
+    display: inline-block;
+    border: solid rgb(13, 27, 16) 2px;
+    background: rgb(13, 27, 16);
+    border-radius: 50%;
+    width: 1px;
+    height: 1px;
+    margin-right: 3px;
+}
+.content .dot:last-child {
+    margin-right: 0;
+}
+
+.content .history {
+    width: 750px;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.content .history td {
+    border: 2px solid rgb(131, 131, 131);
+    padding: 5px;
+}
+
+.content .history .storage td {
+    background-color: rgb(192, 233, 151);
+    border:rgb(38, 171, 60) solid 1px;
+}
+
+.content .history .write-off td {
+    background-color: rgb(255, 162, 162);
+    border:rgb(171, 38, 38) solid 1px;
+}
+
+.content .history .transfer td {
+    background-color: rgb(187, 179, 255);
+    border:rgb(40, 38, 171) solid 1px;
+}
+
+.content .history .repairs td {
+    background-color: rgb(255, 249, 169);
+    border: rgb(253, 236, 0) solid 1px;
+}
+/* .content .history tr:nth-child(4n-3), .content .history tr:nth-child(4n-2) {
+    background: rgb(206, 206, 206);
+}
+
+.content .history tr:nth-child(4n-1), .content .history tr:nth-child(4n) {
+    background: rgb(179, 179, 179);
+} */
+
+.content .search {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.content .back {
+    display: block;
+    float: right;
+    margin-top: -32px;
+    padding: 7px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: rgb(176, 201, 255);
+    color: rgb(21, 19, 121);
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.content .back:hover {
+    background-color: rgb(138, 175, 255);
+}
+
+.content .filter input[type="submit"] {
+    width: 100px;
+    padding: 9px;
+}
+
+.content .filter select {
+    width: 200px;
+}
+
+.content .search-field {
+    width: 280px;
+    padding: 6px;
+    border: rgb(177, 177, 177) solid 2px;
+    margin-right: 5px;
+}
+
+.content .search-field:hover {
+    border-color: rgb(134, 134, 134);
+}
+
+.content .search-field:focus {
+    outline: none;
+    border: rgb(93, 211, 113) solid 2px;
+}
+
+.content .search-button {
+    background-color: rgb(98, 231, 120);
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    width: 70px;
+}
+
+.content .search-button:hover {
+    background-color: rgb(81, 192, 100);
+    cursor: pointer;
+}
+
+.content .result {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.content .undo {
+    color: teal;
+}
+
+.content .page-nav {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50%;
+    margin-right: 50%;
+    transform: translate(-70px, 0);
+    width: 210px;
+}
+
+.content .page-nav a, .content .page-nav span {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(119, 119, 119);
+    padding: 0px;
+    width: 30px;
+    height: 26px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    background-color: rgb(216, 216, 216);
+    border-bottom: rgb(186, 186, 186) solid 4px;
+}
+
+.content .page-nav .current {
+    background-color: rgb(68, 201, 90);
+    color: rgb(27, 121, 27);
+    border-bottom-color: rgb(38, 171, 60);
+}
+
+.content .page-nav .current:hover {
+    background-color: rgb(64, 194, 86);
+    color: rgb(27, 121, 27);
+    border-bottom-color: rgb(36, 163, 58);
+}
+
+.content .page-nav .dots {
+    color: rgb(138, 138, 138);
+    background-color: rgb(190, 190, 190);
+    border-bottom-color: rgb(160, 160, 160);
+}
+
+.content .page-nav .arrow-right {
+    margin-top: 10px;
+    margin-left: 8px;
+    border-right: teal solid 3px;
+    border-top: teal solid 3px;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+}
+.content .page-nav .arrow-left {
+    margin-top: 10px;
+    margin-left: 11px;
+    border-right: teal solid 3px;
+    border-top: teal solid 3px;
+    width: 8px;
+    height: 8px;
+    transform: rotate(-135deg);
+}
+
+.content .page-nav .unlocked{
+    background-color: rgb(98, 231, 120);
+    border-bottom-color: rgb(68, 201, 90);
+}
+
+.content .page-nav .unlocked:hover{
+    background-color: rgb(78, 211, 100);
+    border-bottom-color: rgb(48, 181, 70);
+}
+
+.content .page-nav .unlocked .arrow-left, .content .page-nav .unlocked .arrow-right{
+    border-color: rgb(36, 156, 36);
+}
+
+.content .page-nav .locked {
+    background-color: rgb(190, 190, 190);
+    border-bottom-color: rgb(160, 160, 160);
+}
+
+.content .page-nav .locked .arrow-left, .content .page-nav .locked .arrow-right{
+    border-color: rgb(138, 138, 138);
+}
+
+.content .page-nav .not-current:hover {
+    border-bottom-color: rgb(68, 201, 90);
+}
+
+.content .expired-warranty {
+    color: rgb(83, 0, 0);
+    background-color: rgb(255, 172, 172);
+}
+
+.content .confirm {
+    position: absolute;
+    top: 40%;
+    width: 300px;
+    left: 50%;
+    transform: translate(-175px, -100px);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);;
+    border-radius: 5px;
+    padding: 35px;
+    z-index: 1000;
+}
+
+.content .confirm div input {
+    display: block;
+    float: left;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: rgb(0, 48, 10);
+    color: rgb(255, 255, 255);
+    width: auto;
+    margin-top: 0;
+    text-decoration: none;
+}
+
+.content .confirm div a {
+    display: block;
+    float: right;
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgb(0, 48, 10);
+    color: rgb(255, 255, 255);
+    width: auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.content .confirm div a:hover {
+    background:rgb(0, 32, 8);
+}
+
+.confirm div {
+    margin-top: 70px;
+}
+
+.content .profile-content .save {
+    display: block;
+    width: 296px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    background-color: rgb(0, 48, 10);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.content .profile-content .save:hover {
+    background:rgb(0, 32, 8);
+}
+
+.content .back-to-equip {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.content .del {
+    color: rgb(165, 42, 42);
+    margin-right: 105px;
+    float: right;
+}
+
+.content .del:hover {
+    color: rgb(83, 0, 0);
+    margin-right: 105px;
+    float: right;
+}
+
+.content .history .del-record a{
+    display: block;
+    background-color: rgb(255, 215, 215);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.content .history .del-record {
+    padding: 0;
+    border: none !important;
+    background: none !important;
+    width: 40px;
+}
+
+.content .history .del-record:hover a {
+    background-color: rgb(255, 190, 190);
+}

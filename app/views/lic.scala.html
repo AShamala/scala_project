@@ -1,0 +1,63 @@
+@(page: Int, pageCount: Int, licCount: Int, search: String, delete: Boolean, licenses: List[LicenseModel])(implicit userInfo: UserModel)
+
+@main2("Лицензии и сертификаты", 3, userInfo) {
+    <h1>@if(delete){Удаление}else{Просмотр} лицензий и сертификатов</h1>
+    @if(userInfo.isAdmin) {
+    <a class="add-element-button" href="@routes.HomeController.addLicense">Добавить лицензию</a>
+        @if(!delete) {
+        <a class="add-element-button del-element-button" href="@routes.HomeController.license(page, search, true)">Удаление</a>
+        } else {
+        <a class="add-element-button back-element-button" href="@routes.HomeController.license(page, search, false)">Просмотр</a>
+        }
+    }
+    <div class="search">
+        <form method="post" action="searchLicenses">
+            <input type="hidden" name="delete" value="@delete">
+            <input class="search-field" type="text" name="pattern" value="@search" placeholder="Поиск" maxlength="255">
+            <input class="search-button" type="submit" value="Найти">
+        </form>
+        @if(search != "") {
+        <span class="result"><strong>Результат поиска:</strong> "@search" (@licCount) </span>
+        <a class="undo" href="@routes.HomeController.license(1, "", delete)">Отмена</a>
+        }
+
+    </div>
+    <div class="licenses">
+        @for(lic <- licenses) {
+            <a class="license @if(lic.isExpired){expired}"
+               @if(delete) {
+                @if(userInfo.isAdmin) {
+                   href="#"
+                   onclick="document.getElementById('delete').style.display='block';
+                   document.getElementById('delId').href='/deleteLicense?id=@lic.id&fileName=@lic.file'
+                   return false;"
+                } else { href="#" style="cursor: not-allowed;" }
+               } else {
+                href="@routes.Assets.versioned(s"licenses/${lic.file}")"
+                target="_blank"
+               }
+                title="@lic.name">
+                <div class="lic-name">@if(lic.name.length > 50){@lic.name.substring(0, 50)..}else{@lic.name}<br></div>
+                <img width="160" src="@routes.Assets.versioned("images/license_preview/default.png")">
+                <div class="lic-date">Истекает: @lic.dateEnd</div>
+            </a>
+        }
+        <div class="confirm" id="delete" style="display:none;">
+            <h2>Подтвердите действие</h2>
+            <p>Вы действительно хотите удалить лицензию/сертификат?</p>
+            <div>
+                <a id="delId" style="float: left; margin-right: 10px;" class="submit" href="">Удалить</a>
+                <a class="cancel" href="#"
+                   onclick="document.getElementById('delete').style.display='none';
+                           return false;">Отмена</a>
+            </div>
+        </div>
+    </div>
+    <div class="page-nav">
+        <a @if(page > 1) {href="@routes.HomeController.license(page - 1, search, delete)" class="unlocked"} else { class="locked" }><div class="arrow-left"></div>
+        </a>@if(page > 1){<a class="not-current" href="@routes.HomeController.license(1, search, delete)">1</a><span class="dots">..
+        </span>}<a class="current" href="@routes.HomeController.license(page, search, delete)">@page
+        </a>@if(page < pageCount){<span class="dots">..</span><a class="not-current" href="@routes.HomeController.license(pageCount, search, delete)">@(pageCount)
+        </a>}<a @if(page < pageCount) {href="@routes.HomeController.license(page + 1, search, delete)" class="unlocked"} else { class="locked"}><div class="arrow-right"></div></a>
+    </div>
+}
